@@ -41,6 +41,22 @@ class UKF {
    */
   void UpdateRadar(MeasurementPackage meas_package);
 
+  /**
+   * Updates the state and the state covariance matrix using a sensor measurement
+   * @param meas_package The measurement at k+1
+   * @param n_z The sensor measurement dimension
+   * @param S_out The Innovation covariance matrix
+   * @param K_out The Kalman gain
+   * @param z_diff_out The residual
+   */
+  void UkfUpdate(MeasurementPackage meas_package, int n_z, Eigen::MatrixXd* S_out, Eigen::MatrixXd* K_out, Eigen::VectorXd* z_diff_out);
+
+    /**
+   * Updates the state and the state covariance matrix using a sensor measurement
+   * @param vector The input vector
+   * @param index The index of the angle to be normalized in the vector
+   */
+  void NormalizeAngle(Eigen::VectorXd & vector, int index);
 
   // initially set to false, set to true in first call of ProcessMeasurement
   bool is_initialized_;
